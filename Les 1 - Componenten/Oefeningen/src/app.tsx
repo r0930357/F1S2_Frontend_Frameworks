@@ -3,6 +3,7 @@ import Excercise from './excercise/excercise.tsx'
 import ExcerciseOne from './excerciseOne/excerciseOne.tsx'
 import ExerciseTwo from './exerciseTwo/exerciseTwo.tsx'
 import ExerciseThree from './exerciseThree/exerciseThree.tsx'
+import ExerciseFive from './exerciseFive/exerciseFive.tsx'
 
 
 interface AppProps {
@@ -21,8 +22,11 @@ const App: FunctionComponent<AppProps> = () => {
             <Excercise title={'Exercise 3: Progressbar'}>
                 <ExerciseThree/>
             </Excercise>
-            <Excercise title={'Exercise 4: Number grid'} background={'#77EEEE'}/>
-            <Excercise title={'Exercise 5: Comment card'}/>
+            <Excercise title={'Exercise 4: Grid'} background={'#77EEEE'}>
+            </Excercise>
+            <Excercise title={'Exercise 5: Comment card'}>
+                <ExerciseFive/>
+            </Excercise>
         </>
     )
 }
