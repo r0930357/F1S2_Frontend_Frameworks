@@ -1,4 +1,4 @@
-import IComputerScientist from '../models/IComputerScientist.tsx';
+import IComputerScientist from '../models/ComputerScientist.tsx'
 
 const computerScientists: IComputerScientist[] = [
     {
