@@ -10,7 +10,7 @@ interface CommentSectionProps {
 
 const CommentSection: FunctionComponent<CommentSectionProps> = ({firstName, lastName, content}) => {
     return (
-        <div className="commentSection">
+        <div className={'commentSection'}>
             <Author firstName={firstName} lastName={lastName}/>
             <CommentContent content={content}/>
         </div>

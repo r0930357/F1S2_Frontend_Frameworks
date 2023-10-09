@@ -6,7 +6,7 @@ import {IComment} from '../models/IComment.ts'
 const CommentCard: FunctionComponent<IComment> = ({avatar, ...rest}) => {
 
     return (
-        <div className="card">
+        <div className={'card'}>
             <Avatar avatarURL={avatar}/>
             <CommentSection {...rest}/>
         </div>

@@ -6,7 +6,7 @@ interface CommentContentProps {
 
 const CommentContent: FunctionComponent<CommentContentProps> = ({content}) => {
     return (
-        <div className="content">
+        <div className={'content'}>
             {content}
         </div>
     )

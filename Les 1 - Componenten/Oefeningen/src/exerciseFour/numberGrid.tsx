@@ -1,4 +1,4 @@
-import {FunctionComponent, ReactNode} from 'react'
+import {FunctionComponent} from 'react'
 import '../assets/exerciseFour.css'
 
 interface NumberGridProps {
@@ -7,20 +7,19 @@ interface NumberGridProps {
 
 const NumberGrid: FunctionComponent<NumberGridProps> = ({n}) => {
 
-    const grid: ReactNode [] = []
+        const squares = []
         for (let i = 0; i < n; i++) {
-            const rows: ReactNode [] = []
-            for (let j = 0; j < n; i++) {
-                rows.push(<button className={'square'}>{i * n + j + 1}</button>)
+            const row = []
+            for (let j = 0; j < n; j++) {
+                row.push(<button className={'square'}>{i * n + j + 1}</button>)
             }
-            grid.push(<div className={'grid-row'}></div>)
+            squares.push(<div className={'grid-row'}>{row}</div>)
+        }
+
+        return (
+            <div className={'grid'}>
+                {squares}
+            </div>
+        )
     }
-
-    return (
-        <div className="grid">
-            {grid}
-        </div>
-    )
-}
-
 export default NumberGrid
