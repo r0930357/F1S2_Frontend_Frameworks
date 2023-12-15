@@ -1,0 +1,41 @@
+input {
+    width: 100%;
+}
+
+.accordion {
+    background: #2B2B2B;
+    border-radius: 10px;
+    font-family: Oblique, Verdana, serif, sans-serif;
+    color: #F2F2F2;
+    padding: 1em;
+    margin: 1em 0;
+}
+
+.accordion-item .title {
+    font-size: 180%;
+    float: left;
+}
+
+.accordion-item .subtitle {
+    font-size: 120%;
+    clear: both;
+    margin-bottom: 1em;
+}
+
+.accordion-item .chevron {
+    float: right;
+    font-size: 180%;
+}
+
+.accordion-item .content {
+    display: block;
+    clear: both;
+    padding: .2em;
+}
+
+.chevron button {
+    background-color: unset;
+    border: none;
+    color: #F2F2F2;
+    font-size: inherit;
+}
