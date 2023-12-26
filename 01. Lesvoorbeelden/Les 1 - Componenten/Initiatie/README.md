@@ -5,8 +5,7 @@ Deze les bespreken we hoe een React app aangemaakt kan worden, hoe de mappenstru
 ## Project aanmaken
 Een nieuw React project wordt aangemaakt via onderstaand commando.
 
-
-> <strong>Hint</strong>
+> **ℹ️ Hint**
 >
 > Voer dit commando niet uit in een map die met de cloud gesynchroniseerd wordt.
 > Voor één project zijn er duizenden kleine files nodig. Dit vertraagd je cloud storage enorm.
@@ -34,7 +33,7 @@ pnpm install
 De mappenstructuur van een React project is relatief eenvoudig.
 Hieronder bespreken we elke map en elk bestand.
 
-![Figuur 1: React mappenstructuurFiguur 1: React mappenstructuur](https://it-graduaten-javascript.netlify.app/images/lessen/frontend/lecture1/lecture1_1_folder_structure.png)
+![Figuur 1: React mappenstructuur](../Lesinhoud/Figuur%201%20React%20mappenstructuur.png)
 *Figuur 1: React mappenstructuurFiguur 1: React mappenstructuur*
 
 ### node_modules
@@ -44,7 +43,7 @@ Omdat we pnpm gebruiken bevat deze map enkel symbolic links naar een algemene li
 Dit betekent dus dat deze map overbodig is als je code uploadt, in een git repository plaatst, ... Iedereen die de package.json file heeft, kan de node_modules map dupliceren.
 Voeg deze map dus altijd toe aan je .gitignore file.
 
-> [!TIP] Hint
+> **ℹ️ Hint**
 > 
 > De node_modules map kan eenvoudig gereproduceerd worden met onderstaand commando.
 > ```
@@ -150,7 +149,7 @@ pnpm run dev
 
 Nadat je dit commando uitgevoerd hebt, zie je in de terminal een opsomming van de IP-adressen waarop de development server beschikbaar is. Kopieer dit naar je browser of click op het adres om automatisch naar de browser te gaan.
 
-![Figuur 2: Vite dev server](https://it-graduaten-javascript.netlify.app/images/lessen/frontend/lecture1/lecture1_3_vite_dev.png)
+![Figuur 2: Vite dev server](../Lesinhoud/Figuur%202%20Vite%20dev%20server..png)
 *Figuur 2: Vite dev server*
 
 ## JSX
@@ -158,7 +157,7 @@ React heeft ervoor gekozen om JavaScript en HTML te combineren, een component co
 
 Klassieke JavaScript biedt geen bijzonder goede ondersteuning voor het schrijven van HTML-code, hiervoor zijn meestal een hele hoop string concatenaties nodig. Dit heeft trage en moeilijk te lezen code als gevolg, JSX is een uitbreiding voor JavaScript (en TypeScript) die hier een oplossing voor biedt.
 
-> <strong>Begrip: JSX</strong>
+> **ℹ️<strong> Begrip: JSX</strong>**
 >
 >JavaScript XML (JSX), laat toe om HTML-code in JavaScript te gebruiken zonder quotes of concatenaties.
 > Het is natuurlijk onmogelijk voor een browser om zo'n code te lezen en uit te voeren. Daarom moet elke lijn JSX-code gecompileerd worden naar klassiek JavaScript code.
@@ -206,7 +205,6 @@ De onderstaande, geldige, HTML-code kan niet zomaar aan een variabele toegekend 
 De voorgaande code produceert (in WebStorm) volgende foutmelding.
 
 <p style="color: red" align="center">TS2657: JSX expressions must have one parent element.</p>
-
 
 Dit is een gevolg van het integreren van HTML in JavaScript (en de bijhorende syntax regels).
 Zoals de foutmelding zegt, moeten 2 opeenvolgende JSX-elementen binnen een ander element geplaatst worden.
@@ -273,7 +271,7 @@ De code tussen de accolades kan eveneens een functie zijn die een string terugge
 
 Bovenstaande code werkt en rendered de gevraagde hoofdingen, maar we hebben een omringende <div> moeten toevoegen. Hier is niets mis mee, maar soms heb je een container nodig waaraan geen opmaak gebonden is (een <div> begint standaard een nieuwe lijn omdat het een block-element is), in dat geval je een fragment gebruiken.
 
-> <strong>Begrip: Fragment</strong>
+> **ℹ️<strong> Begrip: Fragment</strong>**
 >
 > Een fragment is een container element dat enkel in de React code bestaat en geen effect heeft op de uiteindelijke HTML-code in het afgewerkte product. Een fragment wordt niet gerenderd.
 >
@@ -313,8 +311,8 @@ Idealiter staat elke component op zich en kan deze in de rest van de website, of
 >
 > Een component is een onderdeel van een React applicatie, één applicatie bestaat uit tientallen componenten. Een component staat op zich, kan herbruikt worden en gebruikt eventueel andere componenten.
 > 
-> ![Figuur 1: React Componenten](https://it-graduaten-javascript.netlify.app/images/lessen/frontend/lecture1/lecture1_2_components.webp)
-> *Figuur 1: React Componenten*
+> ![Figuur 3: React Componenten](../Lesinhoud/Figuur%203%20React%20Componenten.png)
+> *Figuur 3: React Componenten*
 > 
 > Bron: https://react.dev/learn/thinking-in-react
 
@@ -380,7 +378,7 @@ In een production build heeft deze component geen effect, verder is er aan deze 
 >
 > </details>
 
-> <strong>Begrip: Functie component</strong>
+> **ℹ️<strong> Begrip: Functie component</strong>**
 >
 > Een functie component is een functie die één herbruikbaar onderdeel van de user interface definieert en JSX-code teruggeeft.
 > De naam van zo'n functie begint steeds met een hoofdletter.
@@ -433,7 +431,7 @@ We zonderen componenten daarom af in individuele bestanden.
 
 We kunnen vervolgens de component exporteren uit dit bestand en daarna terug importeren in een ander bestand.
 
-> <strong>Begrip: Export & export default</strong>
+> **ℹ️<strong> Begrip: Export & export default</strong>**
 >
 > In deze cursus gebruiken we voor componenten steeds een default export, dit wil zeggen dat de componenten geïmporteerd kunnen worden zonder accolades te moeten schrijven in het import-statement.
 > Als we de default modifier weglaten, wordt de component nog steeds geëxporteerd, maar maakt deze deel uit van een JavaScript object. Om deze component te gebruiken moeten we dan accolades toevoegen aan het import-statement om aan te geven dat we één element uit een object importeren.
@@ -741,84 +739,160 @@ Elk van de ComputerScientist componenten moet bewaard worden in een array die we
 Bovenstaande code kan nog heel wat korter geschreven worden. De spread operator kopieert alle attributen van een object en behoudt dezelfde namen voor deze properties.
 Voor een React component, worden de attributen van het object doorgegeven als properties aan de React component, opnieuw onder dezelfde naam. Onderstaande code produceert dus exact hetzelfde resultaat als die hierboven.
 
+> <details>
+> <summary>/src/computerScientistListV3.tsx</summary>
+>
+> ```
+> interface Props {
+> scientists: IComputerScientist[]
+> }
+>
+> const ComputerScientistListV3: FunctionComponent<Props> = ({scientists}) => {
+> const output = []
+>
+>     for (const scientist of scientists) {
+>         output.push(<ComputerScientist {...scientist}/>);
+>     }
+>
+>     return (
+>         <div>
+>             <h1>Famous computer scientists</h1>
+>             <ul>
+>                 {output}
+>             </ul>
+>         </div>
+>     )
+> }
+> ```
+> </details>
+> <details>
+> <summary>/src/main.tsx</summary>
+>
+> ```
+> import ReactDOM from 'react-dom/client'
+> import {StrictMode} from 'react'
+> import ComputerScientistListV3 from './computerScientistListV3.tsx';
+> import computerScientists from './data/computerScientists.ts';
+>
+> const root = ReactDOM.createRoot(
+>   document.getElementById('root') as HTMLElement
+> );
+>
+>root.render(
+>   <StrictMode>     
+>       <ComputerScientistListV3 scientists={computerScientists}/>        
+>   </StrictMode>
+> )
+> ```
+> </details>
 
-/src/computerScientistListV3.tsx
-/src/main.tsx
 
-interface Props {
-scientists: IComputerScientist[]
-}
 
-const ComputerScientistListV3: FunctionComponent<Props> = ({scientists}) => {
-const output = []
+### Geneste JSX-code
+Elke functiecomponent kan gebruikt worden als zelfsluitend HTML-element.
+Dit is niet altijd voldoende, in sommige gevallen is het nodig om kinderen te definiëren voor een functiecomponent.
 
-    for (const scientist of scientists) {
-        output.push(<ComputerScientist {...scientist}/>);
-    }
+Stel, we willen een lijst van letters uitprinten, elke letter krijgt dezelfde opmaak. De component **LetterAlternative1** zorgt dus enkel voor de opmaak van de letter en voegt verder niets toe.
+Als de hoeveelheid kinderen van zo'n component groot wordt, is het onmogelijk om alles via standaard properties door te geven en overzichtelijke en leesbare code te schrijven.
+We kunnen de *PropsWithChildren* interface gebruiken om de children property toe te voegen aan de properties van een component.
+Of, we kunnen deze eventueel ook zelf definiëren in de bijhorende properties interface, gebruik in dat geval het *ReactNode* datatype.
 
-    return (
-        <div>
-            <h1>Famous computer scientists</h1>
-            <ul>
-                {output}
-            </ul>
-        </div>
-    )
-}
-#Geneste JSX-code
-Elke functiecomponent kan gebruikt worden als zelfsluitend HTML-element. Dit is niet altijd voldoende, in sommige gevallen is het nodig om kinderen te definiëren voor een functiecomponent.
+> <details>
+> <summary>/src/letterAlternative1.tsx</summary>
+>
+> ```
+> import {FunctionComponent, PropsWithChildren} from 'react';
+> 
+> const LetterAlternative1: FunctionComponent<PropsWithChildren> = ({children}) => {
+>   return (
+>       <div>
+>           {/* Render de kinderen van deze component.*/}
+>           {children}
+>       </div>
+>   )
+> }
+> ```
+> </details>
+> <details>
+> <summary>/src/main.tsx</summary>
+>
+> ```
+> root.render(
+>   <StrictMode>
+>       {/* A is een kind van de component LetterAlternative1*/}
+>       <LetterAlternative1>A</LetterAlternative1>
+>       <LetterAlternative1>E</LetterAlternative1>
+>       <LetterAlternative1>I</LetterAlternative1>
+>       <LetterAlternative1>O</LetterAlternative1>
+>       <LetterAlternative1>U</LetterAlternative1>
+>   </StrictMode>
+> )
+> ```
+> </details>
 
-Stel, we willen een lijst van letters uitprinten, elke letter krijgt dezelfde opmaak. De component LetterAlternative1 zorgt dus enkel voor de opmaak van de letter en voegt verder niets toe. Als de hoeveelheid kinderen van zo'n component groot wordt, is het onmogelijk om alles via standaard properties door te geven en overzichtelijke en leesbare code te schrijven. We kunnen de PropsWithChildren interface gebruiken om de children property toe te voegen aan de properties van een component. Of, we kunnen deze eventueel ook zelf definiëren in de bijhorende properties interface, gebruik in dat geval het ReactNode datatype.
 
-/src/letterAlternative1.tsx
-/src/main.tsx
+Als we *LetterAlternative1* schrijven zonder children te gebruiken in de JSX-code, werkt de code niet en wordt er niets getoond.
 
-import {FunctionComponent, PropsWithChildren} from 'react';
+## CSS
+CSS kan op een aantal verschillende manieren toegevoegd worden aan een React applicatie.
+Natuurlijk kan een stylesheet (.css bestand) nog steeds gekoppeld worden aan de applicatie.
+Daarnaast kunnen we de CSS-code ook bij in een component plaatsen.
 
-const LetterAlternative1: FunctionComponent<PropsWithChildren> = ({children}) => {
-return (
-<div>
-{/* Render de kinderen van deze component.*/}
-{children}
-</div>
-)
-}
-Als we LetterAlternative1 schrijven zonder children te gebruiken in de JSX-code, werkt de code niet en wordt er niets getoond.
+### CSS via stylesheets
+De eerste optie is de meest eenvoudige, we plaatsen een CSS-bestand in een map assets in de src directory.
+Het is belangrijk om stylesheets in de src map te plaatsen, zo worden deze geminimaliseerd tijdens het maken van een production build en worden eventuele ongebruikte lijnen verwijderd.
+We voegen onderstaande code toe in main.css en importeren dit in main.tsx.
 
-#CSS
-CSS kan op een aantal verschillende manieren toegevoegd worden aan een React applicatie. Natuurlijk kan een stylesheet (.css bestand) nog steeds gekoppeld worden aan de applicatie. Daarnaast kunnen we de CSS-code ook bij in een component plaatsen.
+> <details>
+> <summary>/src/assets/main.css</summary>
+>
+> ```
+> .letter {
+>   padding: 10px;
+>   margin: 10px;
+>   background-color: #ffde00;
+>   color: #333;
+>   display: inline-block;
+>   font-family: monospace;
+>   font-size: 32px;
+>   text-align: center;
+> }
+> ```
+> </details>
+> <details>
+> <summary>/src/main.tsx</summary>
+>
+> ```
+> import './assets/main.css';
+> ```
+> </details>
 
-#CSS via stylesheets
-De eerste optie is de meest eenvoudige, we plaatsen een CSS-bestand in een map assets in de src directory. Het is belangrijk om stylesheets in de src map te plaatsen, zo worden deze geminimaliseerd tijdens het maken van een production build en worden eventuele ongebruikte lijnen verwijderd. We voegen onderstaande code toe in main.css en importeren dit in main.tsx.
+De CSS-code verwacht een klasse, deze toevoegen aan de component LetterAlternative1 is niet bijzonder moeilijk.
+Het is wel belangrijk om op te merken dat we attribuut class niet kunnen gebruiken, dit is namelijk een keyword in JavaScript.
+React gebruikt het attribuut className om een CSS-klasse mee te geven in JSX-code.
 
-/src/assets/main.css
-/src/main.tsx
+> <details>
+> <summary>/src/letterAlternative1.tsx</summary>
+>
+> ```
+> const LetterAlternative1: FunctionComponent<LetterProps> = ({children}) => {
+>   return (
+>       <div className={'letter'}>
+>           {children}
+>       </div>
+>   )
+> }
+> ```
+> </details>
 
-.letter {
-padding: 10px;
-margin: 10px;
-background-color: #ffde00;
-color: #333;
-display: inline-block;
-font-family: monospace;
-font-size: 32px;
-text-align: center;
-}
-De CSS-code verwacht een klasse, deze toevoegen aan de component LetterAlternative1 is niet bijzonder moeilijk. Het is wel belangrijk om op te merken dat we attribuut class niet kunnen gebruiken, dit is namelijk een keyword in JavaScript. React gebruikt het attribuut className om een CSS-klasse mee te geven in JSX-code.
 
-/src/letterAlternative1.tsx
+## CSS in JavaScript
+Het HTML-attribuut style kan gebruikt worden om inline CSS toe te voegen, in React kan dit ook.
+Het enige verschil is dat we in JSX-code gebruik moeten maken van een JavaScript object om de stijl toe te voegen, in plaats van een puntkomma-seperated string in HTML.
+Dit object heeft het type CSSProperties.
 
-const LetterAlternative1: FunctionComponent<LetterProps> = ({children}) => {
-return (
-<div className={'letter'}>
-{children}
-</div>
-)
-}
-#CSS in JavaScript
-Het HTML-attribuut style kan gebruikt worden om inline CSS toe te voegen, in React kan dit ook. Het enige verschil is dat we in JSX-code gebruik moeten maken van een JavaScript object om de stijl toe te voegen, in plaats van een puntkomma-seperated string in HTML. Dit object heeft het type CSSProperties.
-
-Een belangrijke opmerking is dat CSS-eigenschappen niet rechtstreeks vertaald kunnen worden naar JavaScript. Een attribuut als font-family wordt fontFamily, background-color wordt backgroundColor, ...
+Een belangrijke opmerking is dat CSS-eigenschappen niet rechtstreeks vertaald kunnen worden naar JavaScript.
+Een attribuut als font-family wordt fontFamily, background-color wordt backgroundColor, ...
 
 Als we de CSS in de componenten schrijven, kunnen we properties gebruiken om bepaalde eigenschappen te overschrijven, zoals gedemonstreerd in onderstaand voorbeeld.
 
@@ -826,68 +900,109 @@ Merk op dat we de PropsWithChildren interface dit keer niet rechtstreeks doorgeg
 
 Verder hebben we ook een vraagteken gebruikt om aan te geven dat de property bgColor optioneel is, aangezien deze property optioneel is, controleren we op lijn 12, via de nullish coalescing operator, of we al dan niet gebruik moeten maken van de default waarde.
 
-/src/letterAlternative2.tsx
-/src/main.tsx
 
-interface LetterAlternative2Props extends PropsWithChildren {
-bgColor?: string
-}
+> <details>
+> <summary>/src/letterAlternative2.tsx</summary>
+>
+> ```
+> interface LetterAlternative2Props extends PropsWithChildren {
+>   bgColor?: string
+> }
+> 
+> const LetterAlternative2: FunctionComponent<LetterAlternative2Props> = (props) => {
+>   const {children, bgColor} = props
+>
+>     const letterStyle: CSSProperties = {
+>         padding: 10,
+>         margin: 10,
+>         backgroundColor: bgColor ?? '#ffdeEE',
+>         color: '#333',
+>         display: 'inline-block',
+>         fontFamily: 'monospace',
+>         fontSize: 32,
+>         textAlign: 'center',
+>     }
+>
+>     return (
+>         <div style={letterStyle}>
+>             {children}
+>         </div>
+>     )
+> }
+> ```
+> </details>
+> <details>
+> <summary>/src/main.tsx</summary>
+>
+> ```
+> root.render(
+>     <StrictMode>
+>         <LetterAlternative2 bgColor="#FFF">A</LetterAlternative2>
+>         <LetterAlternative2>E</LetterAlternative2>
+>         <LetterAlternative2>I</LetterAlternative2>
+>         <LetterAlternative2>O</LetterAlternative2>
+>         <LetterAlternative2>U</LetterAlternative2>
+>     </StrictMode>
+> )
+> ```
+> </details>
 
-const LetterAlternative2: FunctionComponent<LetterAlternative2Props> = (props) => {
-const {children, bgColor} = props
+### Styled Components
+De styled-components bibliotheek kan gebruikt worden om klassieke CSS-code te schrijven in een JavaScript file.
+Dit stelt ons in staat om CSS-properties als font-family te gebruiken onder de echte naam en zonder quotes te moeten plaatsen.
+We installeren dit pakket met onderstaand commando.
 
-    const letterStyle: CSSProperties = {
-        padding: 10,
-        margin: 10,
-        backgroundColor: bgColor ?? '#ffdeEE',
-        color: '#333',
-        display: 'inline-block',
-        fontFamily: 'monospace',
-        fontSize: 32,
-        textAlign: 'center',
-    }
-
-    return (
-        <div style={letterStyle}>
-            {children}
-        </div>
-    )
-}
-#Styled Components
-De styled-components bibliotheek kan gebruikt worden om klassieke CSS-code te schrijven in een JavaScript file. Dit stelt ons in staat om CSS-properties als font-family te gebruiken onder de echte naam en zonder quotes te moeten plaatsen. We installeren dit pakket met onderstaand commando.
-
-
+```
 pnpm add styled-components
-De bibliotheek wordt gebruikt om een nieuwe React component te genereren die niets anders bevat dan een HTML5-element met toegevoegde styling. Let op het teken op lijn 3 en 12, dit is een backtick geen single-quote.
+```
 
-/src/letterAlternative3.tsx
-/src/main.tsx
+De bibliotheek wordt gebruikt om een nieuwe React component te genereren die niets anders bevat dan een HTML5-element met toegevoegde styling.
+Let op het teken op lijn 3 en 12, dit is een backtick geen single-quote.
 
-import styled from 'styled-components'
+> <details>
+> <summary>/src/letterAlternative32.tsx</summary>
+>
+> ```
+> import styled from 'styled-components'
+>
+> const LetterContainer = styled.div`
+>   padding: 10px;
+>   margin: 10px;
+>   background-color: #ffde55;
+>   color: #333;
+>   display: inline-block;
+>   font-family: monospace;
+>   font-size: 32px;
+>   text-align: center;
+> `
+>
+> const LetterAlternative3: FunctionComponent<PropsWithChildren> = ({children}) => {
+>   return (
+>       <LetterContainer>
+>           {children}
+>       </LetterContainer>
+>   )
+> }
+> ```
+> </details>
+> <details>
+> <summary>/src/main.tsx</summary>
+>
+> ```
+> root.render(
+>     <StrictMode>
+>         <LetterAlternative3>A</LetterAlternative3>
+>         <LetterAlternative3>E</LetterAlternative3>
+>         <LetterAlternative3>I</LetterAlternative3>
+>         <LetterAlternative3>O</LetterAlternative3>
+>         <LetterAlternative3>U</LetterAlternative3>
+>     </StrictMode>
+> )
+> ```
+> </details>
 
-const LetterContainer = styled.div`
-padding: 10px;
-margin: 10px;
-background-color: #ffde55;
-color: #333;
-display: inline-block;
-font-family: monospace;
-font-size: 32px;
-text-align: center;
-`
-
-const LetterAlternative3: FunctionComponent<PropsWithChildren> = ({children}) => {
-return (
-<LetterContainer>
-{children}
-</LetterContainer>
-)
-}
-#Voorbeeldcode
-Volledig uitgewerkt lesvoorbeeld met commentaar
-#Appendix
+## Appendix
 Indien je graag exact dezelfde stijlregels gebruikt in jouw code als in de voorbeelden, dan kan je de inhoud van het bestand .eslintrc.cjs vervangen met het volgend, of je kan onze stijlregels rechtstreeks downloaden op GitPub.
-
 
 > <details>
 > <summary>/.eslintrc.cjs</summary>
