@@ -1,9 +1,55 @@
-import {FunctionComponent} from 'react'
+import {FunctionComponent, useContext} from 'react'
 import {IMovie} from '../../models/IMovie.ts'
+import styled from  'styled-components'
+import viewModeContext from '../../context/viewModeContext.tsx'
+import {useNavigate} from 'react-router-dom'
 
-const Movie: FunctionComponent<IMovie> = ({poster, title, plot, schedule, actors, writers, directors}) => {
+const MovieContainer = styled.div`
+    background: #2b2d30;
+    color: #aabdc1;
+    display: flex;
+    margin: .5rem 0;
+    width: 100%;
+    max-height: 20rem;
+
+    & > div {
+        width: 100%;
+        margin: .5rem;
+    }
+
+    div:first-child {
+        width: auto;
+        margin: 0;
+    }
+
+    img {
+        height: 20rem;
+        margin-right: .5rem;
+    }
+
+    .plot {
+        height: 8rem;
+        overflow-y: scroll;
+        margin: .5rem .25rem .5rem 0;
+    }
+
+    .schedule {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    h3 {
+        margin-bottom: 0;
+    }`
+
+const Movie: FunctionComponent<IMovie> = ({id, poster, title, plot, schedule, actors, writers, directors}) => {
+    const {viewMode} = useContext(viewModeContext)
+    const navigate = useNavigate()
+
     return (
-        <>
+        <MovieContainer>
             <div>
                 <img src={poster} alt={`${title} poster`}/>
             </div>
@@ -20,10 +66,10 @@ const Movie: FunctionComponent<IMovie> = ({poster, title, plot, schedule, actors
                 </div>
 
                 <div>
-                    <button>Edit</button>
+                    {viewMode === 'admin' && <button onClick={() => navigate(id)}>Edit</button>}
                 </div>
             </div>
-        </>
+        </MovieContainer>
     )
 }
 

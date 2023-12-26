@@ -1,7 +1,11 @@
-import {FunctionComponent, useContext, useEffect, useState} from 'react'
+import {FunctionComponent, Suspense, useContext, useEffect, useState} from 'react'
 import {useGetAllCinemas} from '../../api/cinemaApi.ts'
 import CinemaSelector from './cinemaSelector.tsx'
 import viewModeContext from '../../context/viewModeContext.tsx'
+import {useGetAllMoviesForCinema} from '../../api/movieApi.ts'
+import Movie from './movie.tsx'
+import MovieList from './movieList.tsx'
+import LoadingPart from '../../utils/loadingPart.tsx'
 
 const HomePage: FunctionComponent = () => {
     const {data: cinemas} = useGetAllCinemas()
@@ -26,8 +30,9 @@ const HomePage: FunctionComponent = () => {
                                     selected={selectedCinema === c.id}
                                     selectCinema={() => setSelectedCinema(c.id)}/>)}
             </div>
-
-            {/* TOON DE LIJST VAN FILMS HIERONDER */}
+            <Suspense fallback={<LoadingPart/>}>
+            <MovieList cinemaId={selectedCinema}/>
+            </Suspense>
         </>
     )
 }
