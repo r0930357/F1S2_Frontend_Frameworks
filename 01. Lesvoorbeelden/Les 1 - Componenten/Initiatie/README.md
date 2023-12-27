@@ -33,7 +33,7 @@ pnpm install
 De mappenstructuur van een React project is relatief eenvoudig.
 Hieronder bespreken we elke map en elk bestand.
 
-![Figuur 1: React mappenstructuur](../Lesinhoud/Figuur%201%20React%20mappenstructuur.png)
+![Figuur 1: React mappenstructuur](../Lesinhoud/Figuur%201%20React%20mappenstructuur.png)</br>
 *Figuur 1: React mappenstructuurFiguur 1: React mappenstructuur*
 
 ### node_modules
@@ -149,7 +149,7 @@ pnpm run dev
 
 Nadat je dit commando uitgevoerd hebt, zie je in de terminal een opsomming van de IP-adressen waarop de development server beschikbaar is. Kopieer dit naar je browser of click op het adres om automatisch naar de browser te gaan.
 
-![Figuur 2: Vite dev server](../Lesinhoud/Figuur%202%20Vite%20dev%20server..png)
+![Figuur 2: Vite dev server](../Lesinhoud/Figuur%202%20Vite%20dev%20server..png)</br>
 *Figuur 2: Vite dev server*
 
 ## JSX
@@ -311,7 +311,7 @@ Idealiter staat elke component op zich en kan deze in de rest van de website, of
 >
 > Een component is een onderdeel van een React applicatie, één applicatie bestaat uit tientallen componenten. Een component staat op zich, kan herbruikt worden en gebruikt eventueel andere componenten.
 > 
-> ![Figuur 3: React Componenten](../Lesinhoud/Figuur%203%20React%20Componenten.png)
+> ![Figuur 3: React Componenten](../Lesinhoud/Figuur%203%20React%20Componenten.png)</br>
 > *Figuur 3: React Componenten*
 > 
 > Bron: https://react.dev/learn/thinking-in-react
