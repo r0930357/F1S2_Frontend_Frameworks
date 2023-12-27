@@ -1,4 +1,4 @@
-# Voorbeeldexamen - November 2023 - 2024
+# Voorbeeldexamen November 2023 - 2024
 
 De startbestanden die voorzien worden voor dit examen bevatten reeds alle libraries, je moet dus enkel nog een pnpm install uitvoeren.
 Het examen bestaat uit twee delen, in deel 1 wordt je React kennis getest en in deel 2 ondervragen we je Cypress kennis.
@@ -23,41 +23,51 @@ Let op, de startbestanden bevatten ook een bestand cssForStyledComponents.txt, d
 ```
 .
 ├── public
-│	└── vite.svg
+│    └── vite.svg
 ├── src
-│   ├── api
-│   │	├── NIET_OPENEN_WORD_GEBRUIKT_DOOR_DE_API_FILES
-│   │	│	├── data
-│   │	│	├── databaseSimulation.ts
-│   │	│	├── generateData.ts
-│   │	│	└── utils.ts
-│   │	├── cinemaApi.ts
-│   │	└── movieApi.ts
-│   ├── assets
-│   │	└── react.svg
-│   ├── hooks
-│   │	└── useIsAdmin.ts
-│   ├── models
-│   │	├── ICinema.ts
-│   │	├── ICrew.ts
-│   │	├── IMovie.ts
-│   │	└── ISchedule.ts
-│   ├── pages
-│   │	└── home
-│   │		├── detail
-│   │		│	├── detailPage.tsx
-│   │		│	└── editMovie.tsx
-│   │		├── cinemaSelector.tsx
-│   │		├── homePage.tsx
-│   │		└── movie.tsx
-│   └── utils
-│   	├── loadingPage.tsx
-│   	└── loadingPart.tsx
-├── app.tsx
-├── cssForStyledComponents.txt
-├── main.css
-├── main.tsx
-└── vite-env.d.ts
+│    ├── api
+│    │    ├── NIET_OPENEN_WORD_GEBRUIKT_DOOR_DE_API_FILES
+│    │    │    ├── data
+│    │    │    ├── databaseSimulation.ts
+│    │    │    ├── generateData.ts
+│    │    │    └── utils.ts
+│    │    ├── cinemaApi.ts
+│    │    └── movieApi.ts
+│    ├── assets
+│    │    └── react.svg
+│    ├── hooks
+│    │    └── useIsAdmin.ts
+│    ├── models
+│    │    ├── ICinema.ts
+│    │    ├── ICrew.ts
+│    │    ├── IMovie.ts
+│    │    └── ISchedule.ts
+│    ├── pages
+│    │    └── home
+│    │         ├── detail
+│    │         │    ├── detailPage.tsx
+│    │         │    └── editMovie.tsx
+│    │         ├── cinemaSelector.tsx
+│    │         ├── homePage.tsx
+│    │         └── movie.tsx
+│    ├── utils
+│    │	  ├── loadingPage.tsx
+│    │	  └── loadingPart.tsx
+│    ├── app.tsx
+│    ├── cssForStyledComponents.txt
+│    ├── main.css
+│    ├── main.tsx
+│    └── vite-env.d.ts
+├── .eslintrc.cjs
+├── .gitignore
+├── index.html
+├── package.json
+├── pnpm-lock.yaml
+├── README.md
+├── tsconfig.json
+├── tsconfig.node.json
+├── vite.config.js
+└── vite.config.ts
 ```
 
 In het verdere verloop van dit examen worden af en toe CSS-klassen vermeld die toegevoegd kunnen worden om de opmaak in de screenshots na te bouwen.
@@ -189,3 +199,64 @@ Schrijf onderstaand testscenario uit voor de ‘/’ route. Twee van de ondersta
 	- Kan de taal selecteren. Wanneer er voor Engels gekozen is moet de titel “My Surveys” zijn, wanneer er voor Nederlands gekozen is moet de titel iets anders zijn.
 	- Kan een survey aanmaken en deze vervolgens terugvinden op de overzichtspagina.
 
+## Mapstructuur Testing
+
+```
+.
+├── deel_2_testing
+│    ├── cypress
+│    │    ├── fixtures
+│    │    │    └── example.json
+│    │    ├── support
+│    │    │    ├── commands.js
+│    │    │    ├── component.js
+│    │    │    ├── component-index.html
+│    │    │    ├── e2e.js
+│    │	  │    └── index.ts
+│    │    └── public
+│    │         └── vite.svg
+│    ├── src
+│    │    ├── api
+│    │    │    ├── NIET_OPENEN_WORD_GEBRUIKT_DOOR_DE_API_FILES
+│    │    │    │    ├── databaseSimulation.ts
+│    │    │    │    └── generateData.ts
+│    │    │    ├── questionApi.ts
+│    │    │    ├── surveyApi.ts
+│    │    │    └── userApi.ts
+│    │    ├── context
+│    │    │    └── languageContext.tsx
+│    │    ├── models
+│    │    │    ├── IQuestion.ts
+│    │    │    ├── ISurvey.ts
+│    │    │    └── IUser.ts
+│    │    ├── navigation
+│    │    │    ├── navigation.tsx
+│    │    │    └── routing.tsx
+│    │    ├── pages
+│    │    │    ├── detail
+│    │    │    │    ├── multiLineQuestion.tsx
+│    │    │    │    ├── multipleSelectQuestion.tsx
+│    │    │    │    ├── singleLineQuestion.tsx
+│    │    │    │    └── surveyDetail.tsx
+│    │    │    ├── survey.tsx
+│    │    │    └── surveys.tsx
+│    │    └── utils
+│    │         ├── loadingPage.jsx
+│    │         └── loadingPart.jsx
+│    ├── app.tsx
+│    ├── main.css
+│    └── main.tsx
+├── .eslintrc.cjs
+├── .gitignore
+├── cypress.config.ts
+├── index.html
+├── package.json
+├── pnpm-lock.yaml
+├── README.md
+├── tsconfig.json
+├── tsconfig.node.json
+├── vite.config.ts
+│
+│ // Mapstructuur Deel 1
+*
+```

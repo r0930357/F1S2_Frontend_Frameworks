@@ -5,7 +5,7 @@ import {
 } from './NIET_OPENEN_WORDT_GEBRUIKT_DOOR_DE_API_FILES/databaseSimulation.ts'
 import {getRandomUnusedMovie, MOVIE_KEY} from './NIET_OPENEN_WORDT_GEBRUIKT_DOOR_DE_API_FILES/generateData.ts'
 import {faker} from '@faker-js/faker'
-import {useQuery} from '@tanstack/react-query'
+import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 
 
 //region Mutations & queries
@@ -20,6 +20,17 @@ export const useGetAllMoviesForCinema = (cinemaId: string | null) => {
     return useQuery({
         queryKey: ['movies', cinemaId],
         queryFn: () => getAllMoviesForCinema(cinemaId),
+    })
+}
+
+export const useCreateMovie = () => {
+    const queryClient = useQueryClient()
+
+    return useMutation({
+        mutationFn: createMovie,
+        onSettled: () => {
+            await queryClient.invalidateQueries(['movies'])
+        },
     })
 }
 
