@@ -18,6 +18,48 @@ De startbestanden bevatten een stylesheet met opmaak voor dit examen.
 Zorg ervoor dat deze opmaak voor het volledige examen ingeladen wordt.
 Let op, de startbestanden bevatten ook een bestand cssForStyledComponents.txt, dit zal je in een volgende opgaven als bron moeten gebruiken, je kopieert deze code niet naar het CSS-bestand.
 
+## Mapstructuur startbestanden
+
+```
+.
+├── public
+│	└── vite.svg
+├── src
+│   ├── api
+│   │	├── NIET_OPENEN_WORD_GEBRUIKT_DOOR_DE_API_FILES
+│   │	│	├── data
+│   │	│	├── databaseSimulation.ts
+│   │	│	├── generateData.ts
+│   │	│	└── utils.ts
+│   │	├── cinemaApi.ts
+│   │	└── movieApi.ts
+│   ├── assets
+│   │	└── react.svg
+│   ├── hooks
+│   │	└── useIsAdmin.ts
+│   ├── models
+│   │	├── ICinema.ts
+│   │	├── ICrew.ts
+│   │	├── IMovie.ts
+│   │	└── ISchedule.ts
+│   ├── pages
+│   │	└── home
+│   │		├── detail
+│   │		│	├── detailPage.tsx
+│   │		│	└── editMovie.tsx
+│   │		├── cinemaSelector.tsx
+│   │		├── homePage.tsx
+│   │		└── movie.tsx
+│   └── utils
+│   	├── loadingPage.tsx
+│   	└── loadingPart.tsx
+├── app.tsx
+├── cssForStyledComponents.txt
+├── main.css
+├── main.tsx
+└── vite-env.d.ts
+```
+
 In het verdere verloop van dit examen worden af en toe CSS-klassen vermeld die toegevoegd kunnen worden om de opmaak in de screenshots na te bouwen.
 Als jouw oplossing er anders uitziet, is dit geen probleem.
 De focus van het examen ligt op de functionaliteit, focus dus niet op CSS-problemen, deze hebben, behalve het koppelen van de .css file en het gebruik van styled-components geen invloed op je resultaat.
@@ -147,63 +189,3 @@ Schrijf onderstaand testscenario uit voor de ‘/’ route. Twee van de ondersta
 	- Kan de taal selecteren. Wanneer er voor Engels gekozen is moet de titel “My Surveys” zijn, wanneer er voor Nederlands gekozen is moet de titel iets anders zijn.
 	- Kan een survey aanmaken en deze vervolgens terugvinden op de overzichtspagina.
 
-# Deconstructie van de opdracht
-## Deel 1: React
-
-### Mapstructuur startbestanden
-
-```
-. </br>
-├── public </br>
-│	└── vite.svg </br>
-├── src </br>
-│   ├── api </br>
-│   │	├── NIET_OPENEN_WORD_GEBRUIKT_DOOR_DE_API_FILES </br>
-│   │	│	├── data </br>
-│   │	│	├── databaseSimulation.ts </br>
-│   │	│	├── generateData.ts </br>
-│   │	│	└── utils.ts </br>
-│   │	├── cinemaApi.ts </br>
-│   │	└── movieApi.ts </br>
-│   ├── assets </br>
-│   │	└── react.svg </br>
-│   ├── hooks </br>
-│   │	└── useIsAdmin.ts </br>
-│   ├── models </br>
-│   │	├── ICinema.ts </br>
-│   │	├── ICrew.ts </br>
-│   │	├── IMovie.ts </br>
-│   │	└── ISchedule.ts </br>
-│   ├── pages </br>
-│   │	└── home </br>
-│   │		├── detail </br>
-│   │		│	├── detailPage.tsx </br>
-│   │		│	└── editMovie.tsx </br>
-│   │		├── cinemaSelector.tsx </br>
-│   │		├── homePage.tsx </br>
-│   │		└── movie.tsx </br>
-│   └── utils </br>
-│   	├── loadingPage.tsx </br>
-│   	└── loadingPart.tsx </br>
-├── app.tsx </br>
-├── cssForStyledComponents.txt </br>
-├── main.css </br>
-├── main.tsx </br>
-└── vite-env.d.ts </br>
-```
-
-### Navigatie, routing & context
-Bouw een navigatiebalk uit met één link.
-De link 'Home' verwijst naar het root path '/' en toont de component HomePage, die al terug te vinden is in de startbestanden.
-
-Om onderstaande lay-out na te bouwen, gebruik je een unordered list om de items in de navigatiebalk te tonen en omring je deze list in een div die de klasse navbar krijgt.
-![Figuur 1: Navbar met Home link](../Afbeeldingen/Voorbereidingsexamen%201/screenshot1_navabar_home_link.png)</br>
-*Figuur 1: Navbar met Home link*
-
-Voorzie ook alvast een route voor de detailpagina van een film. Maak hierbij gebruik van de id als unieke navigatie parameter.
-
-Dit pad toont de component DetailPage (te vinden in de startbestanden).
-
-Plaats tenslotte, in app.tsx, de routing-component binnen suspense, gebruik de LoadingPage component uit de startbestanden als fallback.
-
-Omring de suspense tenslotte nog met een div die de klasse container krijgt (deze is al aanwezig).
