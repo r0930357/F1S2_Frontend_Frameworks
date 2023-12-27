@@ -1,7 +1,7 @@
 import {retrieveFromDatabase} from './NIET_OPENEN_WORDT_GEBRUIKT_DOOR_DE_API_FILES/databaseSimulation.ts'
 import {CINEMA_KEY} from './NIET_OPENEN_WORDT_GEBRUIKT_DOOR_DE_API_FILES/generateData.ts'
 import {ICinema} from '../models/ICinema.ts'
-import {useQuery} from '@tanstack/react-query'
+import {useQuery, UseQueryResult} from '@tanstack/react-query'
 
 //region Mutations & queries
 
@@ -11,7 +11,7 @@ import {useQuery} from '@tanstack/react-query'
  * ---------------------------------------------------------------------------------------------------------------------
  */
 
-export const useGetAllCinemas = (): useQueryResult<ICinema[], Error> => {
+export const useGetAllCinemas = (): UseQueryResult<ICinema[], Error> => {
     return useQuery({
         queryKey: ['cinema'],
         queryFn: getAllCinemas,

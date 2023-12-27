@@ -2,7 +2,7 @@ import {FunctionComponent, Suspense, useContext, useEffect, useState} from 'reac
 import {useGetAllCinemas} from '../../api/cinemaApi.ts'
 import CinemaSelector from './cinemaSelector.tsx'
 import viewModeContext from '../../context/viewModeContext.tsx'
-import {useCreateMovie, useGetAllMoviesForCinema} from '../../api/movieApi.ts'
+import {useCreateMovie} from '../../api/movieApi.ts'
 import MovieList from './movieList.tsx'
 import LoadingPart from '../../utils/loadingPart.tsx'
 

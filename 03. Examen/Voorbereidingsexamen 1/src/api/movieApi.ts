@@ -28,8 +28,40 @@ export const useCreateMovie = () => {
 
     return useMutation({
         mutationFn: createMovie,
-        onSettled: () => {
-            await queryClient.invalidateQueries(['movies'])
+        onSettled: async () => {
+           await queryClient.invalidateQueries(['movies'])
+        },
+    })
+}
+
+export const useGetMovieById = (movieId: string) => {
+    return useQuery({
+        queryKey: ['movies', movieId],
+        queryFn: () => getMovieById(movieId),
+    })
+}
+
+export const useAddActorToMovie = () => {
+    const queryClient = useQueryClient()
+
+    return useMutation({
+        mutationFn: addActorToMovie,
+        onMutate: ({name, movieId}) => {
+            const queryKey = ['movies', movieId]
+            const oldMovie = queryClient.getQueryData<IMovie>(queryKey)
+            const newMovie = {...oldMovie, actors: [...oldMovie?.actors ?? [], {id: 'temp', name}]}
+            queryClient.setQueryData(queryKey, newMovie)
+            return {queryKey, oldMovie}
+        },
+        onError: (_, __, context) => {
+            if (context) {
+                queryClient.setQueryData(context.queryKey, context.oldMovie)
+            }
+        },
+        onSuccess: (newMovie, _, context) => {
+            if (context) {
+                queryClient.setQueryData(context.queryKey, newMovie)
+            }
         },
     })
 }

@@ -36,7 +36,7 @@ Hieronder bespreken we elke map en elk bestand.
 ![Figuur 1: React mappenstructuur](../Lesinhoud/Figuur%201%20React%20mappenstructuur.png)</br>
 *Figuur 1: React mappenstructuurFiguur 1: React mappenstructuur*
 
-### node_modules
+### [node_modules](../Initiatie/node_modules)
 De node_modules map bevat alle bibliotheken en tools die nodig zijn om een React applicatie te ontwikkelen en publiceren.
 Daarnaast komen ook alle extra pakketten die jij, als ontwikkelaar, installeert in deze map te staan.
 Omdat we pnpm gebruiken bevat deze map enkel symbolic links naar een algemene library cache op jouw machine.
@@ -51,19 +51,19 @@ Voeg deze map dus altijd toe aan je .gitignore file.
 > ```
 
 
-### public
+### [public](../Initiatie/public)
 De map public bevat statische resources die niet mee gecompileerd, gebundeld of minified moeten worden. Deze map bevat standaard enkel het Vite logo. Normaliter moet er niet veel toegevoegd worden aan deze folder, behalve een favicon en eventuele statische bestanden (bijvoorbeeld een CV (pdf) op een portfolio). Alle code, stylesheets en images komen in de src map te staan. Zo kunnen assets die uiteindelijk niet gebruikt worden, uitgesloten worden uit de production bundle.
 
-### src
+### [src](../Initiatie/src)
 Deze map bevat de eigenlijke code van de React applicatie, standaard bevat deze map een hele reeks bestanden. We vertrekken, voor het OPO Frontend Frameworks, elke les van een leeg project, de inhoud van de src map mag je dus weggooien als je een nieuw project aanmaakt.
 
-### .gitignore
+### [.gitignore](../Initiatie/.gitignore)
 Elk React project wordt standaard geïnitialiseerd als een git project. Het .gitignore bestand bevat een opsomming van de bestanden die niet in version control geplaatst mogen worden, bijvoorbeeld de node_modules en dist mappen.
 
-### package.json
+### [package.json](../Initiatie/package.json)
 Binnen package.json worden alle geïnstalleerde pakketten opgesomd. Hiervoor worden 2 attributen gebruikt binnen het JSON-object. Het eerste attribuut dependencies bevat een lijst van alle geïnstalleerde pakketten die relevant zijn voor de eindgebruiker. Het tweede attribuut devDependencies bevat een lijst van alle geïnstalleerde pakketten die enkel relevant zijn tijdens de ontwikkeling van de applicatie. Zaken zoals linters, transpilers, build-tools, en testing libraries, horen hier thuis. Tijdens het compilatieproces worden enkel de dependencies gekopieerd naar de productie-build. De devDependencies worden gebruikt om de productie-build te genereren.
 
-### index.html
+### [index.html](../Initiatie/index.html)
 Dit is de enige pure HTML-file die we gebruiken in een React project. Binnen deze HTML-pagina mag enkel de inhoud van het <head> tag aangepast worden, bijvoorbeeld om het favicon te wijzigen, aan SEO te doen of iets van een CDN in te laden. De HTML-pagina bevat standaard volgende code:
 
 > <details>
