@@ -26,7 +26,7 @@ Let op, de startbestanden bevatten ook een bestand cssForStyledComponents.txt, d
 │    └── vite.svg
 ├── src
 │    ├── api
-│    │    ├── NIET_OPENEN_WORD_GEBRUIKT_DOOR_DE_API_FILES
+│    │    ├── NIET_OPENEN_WORDT_GEBRUIKT_DOOR_DE_API_FILES
 │    │    │    ├── data
 │    │    │    ├── databaseSimulation.ts
 │    │    │    ├── generateData.ts
