@@ -1,0 +1,151 @@
+body {
+    margin: 0;
+}
+
+select {
+    background: none;
+    border: none;
+    justify-self: end;
+}
+
+ul > li:nth-child(3) {
+    flex-grow: 1;
+    text-align: end;
+}
+
+.userMenu {
+    position: absolute;
+    right: 0;
+    top: 3em;
+}
+
+.container {
+    margin: 3em;
+}
+
+.tabContainer {
+    display: flex;
+    border-bottom: 1px solid #1d2025;
+    margin-bottom: 2em;
+}
+
+.tabContainer div {
+    background-color: unset;
+    border: unset;
+    flex-grow: 1;
+}
+
+.tabContainer div:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.tabContainer div:first-child {
+    text-align: start;
+}
+
+.tabContainer div:last-child {
+    text-align: end;
+}
+
+.tabContainer .active {
+    color: #cb772e;
+}
+
+.projects-repositories, .branches {
+    display: flex;
+}
+
+.projects-repositories button, .modal button, .branches button {
+    padding: .5em;
+    margin: 1em auto;
+    background-color: #1d2025;
+    color: white;
+    border: none;
+    min-width: 25em;
+    display: block;
+}
+
+button {
+    width: 100%;
+}
+
+.projects-repositories div:first-child, .branches > div:first-child {
+    border-right: 1px solid black;
+    padding-right: 2em;
+}
+
+.projects-repositories button.active {
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(54,107,206,1);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(54,107,206,1);
+    box-shadow: 0px 0px 5px 3px rgba(54,107,206,1);
+}
+
+.projects-repositories button:hover, .branches button:hover {
+    background-color: #4b2f36;
+    cursor: pointer;
+}
+
+.projects-repositories > div:last-child {
+    text-align: end;
+    flex-grow: 1;
+    margin-left: 2em;
+}
+
+.branches > div:last-child{
+    flex-grow: 1;
+    margin-left: 2em;
+}
+
+*:active, *:focus {
+    outline: unset;
+}
+
+.repository, .commit {
+    text-align: start !important;
+    background-color: #477cba;
+    color: #c5d1e2;
+    border-radius: 5px;
+    margin: 1em 0.5em;
+    padding: .5em;
+}
+
+.modal {
+    color: white;
+    background-color: #2b2d30;
+    position: absolute;
+    width: 30em;
+    height: 30em;
+    left: 50%;
+    margin-left: -15em;
+    top: 50%;
+    margin-top: -15em;
+    text-align: start;
+    padding: 1em;
+    z-index: 2;
+}
+
+.modal label, .modal input {
+    display: block;
+    width: 100%;
+}
+
+.modal input {
+    margin-bottom: 1em;
+}
+
+.commit {
+    margin: 1em 0;
+}
+
+.branches input {
+    width: 100%;
+}
+
+.branches p {
+    margin: 0;
+}
+
+.branches input[type=checkbox] {
+    width: 10%;
+}

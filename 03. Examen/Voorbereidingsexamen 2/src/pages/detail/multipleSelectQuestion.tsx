@@ -1,17 +1,16 @@
 import {FunctionComponent} from 'react'
 import {useParams} from 'react-router-dom'
-import {useDeleteSurvey} from '../../../api/surveyAPI.ts'
-import {useDeleteQuestion} from '../../../api/questionAPI.ts'
+import {useDeleteQuestion} from '../../api/questionApi.ts'
 
-interface MultipleSelectQuestionProps {
+interface MultipleSelectQuestionParams {
+    title: string,
+    options: [],
     id: string
-    title: string
-    options: []
 }
 
-const MultipleSelectQuestion: FunctionComponent<MultipleSelectQuestionProps> = ({title,options}) => {
-    const {id: questionId} = useParams()
-    const {mutate: deleteQuestionMutation} = useDeleteQuestion(questionId)
+const MultipleSelectQuestion: FunctionComponent<MultipleSelectQuestionParams> = ({title, options, id}) => {
+    const {id: surveyId} = useParams()
+    const deleteQuestionMutation = useDeleteQuestion(surveyId)
 
     return (
         <div className={'question'}>
@@ -19,7 +18,7 @@ const MultipleSelectQuestion: FunctionComponent<MultipleSelectQuestionProps> = (
                 <h3>{title}</h3>
                 <fieldset disabled={true}>
                     <legend>Choose all that apply</legend>
-                    {options.map(o => (
+                    {options?.map(o => (
                         <div key={o.id}>
                             <input type="checkbox" id={o.id}/>
                             <label>{o.name}</label>
@@ -28,13 +27,12 @@ const MultipleSelectQuestion: FunctionComponent<MultipleSelectQuestionProps> = (
                 </fieldset>
             </div>
             <div>
-                <button onClick={() => deleteQuestionMutation({questionId: id})}>
+                <button onClick={() => deleteQuestionMutation.mutate({questionId: id})}>
                     X
                 </button>
             </div>
         </div>
-
-)
+    )
 }
 
 export default MultipleSelectQuestion

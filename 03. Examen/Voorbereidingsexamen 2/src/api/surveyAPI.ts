@@ -1,6 +1,12 @@
-import { persistToDatabase, retrieveFromDatabase } from './NIET_OPENEN_WORDT_GEBRUIKT_DOOR_DE_API_FILES/databaseSimulation.ts';
-import { faker } from '@faker-js/faker';
-import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
+import {
+    persistToDatabase,
+    retrieveFromDatabase,
+} from './NIET_OPENEN_WORDT_GEBRUIKT_DOOR_DE_API_FILES/databaseSimulation.ts'
+import {faker} from '@faker-js/faker'
+import {useMutation, useQuery, useQueryClient, UseQueryResult} from '@tanstack/react-query'
+import {generateQuestion} from './NIET_OPENEN_WORDT_GEBRUIKT_DOOR_DE_API_FILES/generateData.ts'
+import {ISurvey} from '../models/ISurvey.ts'
+import {IQuestion} from '../models/IQuestion.ts'
 
 //region Mutations & queries
 
@@ -10,42 +16,29 @@ import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
  * ---------------------------------------------------------------------------------------------------------------------
  */
 
-export const useGetAllSurveys = () => {
+export const useGetAllSurveys = (): UseQueryResult<ISurvey[], Error> => {
     return useQuery({
-        queryKey: ['survey'],
+        queryKey: ['surveys'],
         queryFn: getAllSurveys,
-        }
-    )
+    })
 }
 
 export const useCreateSurvey = () => {
     const queryClient = useQueryClient()
-
     return useMutation({
         mutationFn: createSurvey,
         onSettled: async () => {
             await queryClient.invalidateQueries(['surveys'])
-        },
-    })
-}
-
-export const useDeleteSurvey = (surveyId: string) => {
-    const queryClient = useQueryClient()
-
-    return useMutation({
-        mutationFn: deleteSurvey,
-        onMutate: () => {
-            queryClient.setQueryData(['survey', surveyId], o => o.filter(x => x.id !== surveyId))
-        },
-        onSuccess: async () => {
-            await queryClient.invalidateQueries(['survey', surveyId])
         }
     })
 }
 
+
 //endregion
 
+
 //region Fetching functions
+
 
 /**
  * ---------------------------------------------------------------------------------------------------------------------
@@ -55,56 +48,36 @@ export const useDeleteSurvey = (surveyId: string) => {
 
 /**
  * Haal alle surveys op die in de database zitten.
- *
- * @return {Promise<Array<{
- *     name: string,
- *     id: string,
- *     createdAt: number,
- * }>>}
  */
-export const getAllSurveys = async (): Promise<Array<{
-    name: string;
-    id: string;
-    createdAt: number;
-}>> => {
-    const surveys = await retrieveFromDatabase('_surveys');
-    return surveys.sort((a, b) => b.createdAt - a.createdAt);
-};
+const getAllSurveys = async (): Promise<ISurvey[]> => {
+    const surveys = await retrieveFromDatabase<ISurvey[]>('_surveys', false)
+    return surveys.sort((a, b) => b.createdAt - a.createdAt)
+}
+
+interface CreateSurveyParams {
+    name: string
+}
 
 /**
  * Maak een nieuwe survey aan.
  *
- * @param name {string} De naam van de survey.
- * @return {Promise<{
- *     name: string,
- *     id: string,
- *     createdAt: number,
- * }>}
+ * @param name De naam van de survey.
  */
-export const createSurvey = async ({ name }: { name: string }): Promise<{
-    name: string;
-    id: string;
-    createdAt: number;
-}> => {
+const createSurvey = async ({name}: CreateSurveyParams): Promise<ISurvey> => {
     const survey = {
         name,
         id: faker.string.uuid(),
         createdAt: Date.now(),
-    };
-    const surveys = await retrieveFromDatabase('_surveys');
-    await persistToDatabase('_surveys', [...surveys, survey]);
-    return survey;
-};
+    }
+    const questions = Array(faker.number.int({min: 2, max: 8})).fill(null).map(() => generateQuestion(survey.id))
 
-/**
- * Verwijder een bepaalde survey.
- *
- * @param id {string} Het id van de survey die verwijderd moet worden.
- * @return {Promise<void>}
- */
-export const deleteSurvey = async ({ id }: { id: string }): Promise<void> => {
-    const surveys = await retrieveFromDatabase('_surveys');
-    await persistToDatabase('_surveys', surveys.filter(s => s.id !== id));
-};
+    const surveys = await retrieveFromDatabase<ISurvey[]>('_surveys', false)
+    await persistToDatabase('_surveys', [...surveys, survey], false)
+
+    const oldQuestions = await retrieveFromDatabase<IQuestion[]>('_questions', false)
+    await persistToDatabase('_questions', [...oldQuestions, ...questions], false)
+
+    return survey
+}
 
 //endregion

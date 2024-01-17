@@ -1,7 +1,7 @@
 import {FunctionComponent} from 'react'
-import Surveys from './pages/surveys/surveys.tsx'
-import SurveyDetail from './pages/surveys/detail/surveyDetail.tsx'
 import {Outlet, Route, Routes} from 'react-router-dom'
+import SurveyDetail from './pages/detail/surveyDetail.tsx'
+import Surveys from './pages/surveys.tsx'
 
 interface RoutingProps {
 

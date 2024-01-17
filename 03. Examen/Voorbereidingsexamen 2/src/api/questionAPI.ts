@@ -1,5 +1,8 @@
-import { persistToDatabase, retrieveFromDatabase } from './NIET_OPENEN_WORDT_GEBRUIKT_DOOR_DE_API_FILES/databaseSimulation.ts';
-import { faker } from '@faker-js/faker'
+import {
+    persistToDatabase,
+    retrieveFromDatabase,
+} from './NIET_OPENEN_WORDT_GEBRUIKT_DOOR_DE_API_FILES/databaseSimulation.ts'
+import {IQuestion} from '../models/IQuestion.ts'
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 
 //region Mutations & queries
@@ -12,39 +15,30 @@ import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 
 export const useGetAllQuestionsForSurvey = (surveyId: string) => {
     return useQuery({
-        queryKey: ['question', surveyId],
-    queryFn: () => getAllQuestionsForSurvey(surveyId),
+        queryKey: ['surveys', surveyId],
+        queryFn: () => getAllQuestionsForSurvey({surveyId}),
     })
 }
 
-export const useCreateQuestion = () => {
-    const queryClient = useQueryClient()
-
-    return useMutation({
-        mutationFn: createQuestion,
-        onSettled: async () => {
-            await queryClient.invalidateQueries(['questions'])
-        },
-    })
-}
-
-export const useDeleteQuestion = (questionId: string) => {
+export const useDeleteQuestion = (surveyId: string) => {
     const queryClient = useQueryClient()
 
     return useMutation({
         mutationFn: deleteQuestion,
         onMutate: ({questionId}) => {
-            queryClient.setQueryData(['question', questionId], o => o.filter(x => x.id !== questionId))
+            queryClient.setQueryData(['survey', surveyId], o => o.filter(x => x.id !== questionId))
         },
         onSuccess: async () => {
-            await queryClient.invalidateQueries(['survey', questionId])
+            await queryClient.invalidateQueries(['survey', surveyId])
         }
     })
 }
 
 //endregion
 
+
 //region Fetching functions
+
 
 /**
  * ---------------------------------------------------------------------------------------------------------------------
@@ -52,88 +46,36 @@ export const useDeleteQuestion = (questionId: string) => {
  * ---------------------------------------------------------------------------------------------------------------------
  */
 
+interface GetAllQuestionsForSurveyParams {
+    surveyId: string
+}
+
 /**
  * Haal alle vragen op voor een bepaalde survey.
  *
- * @param surveyId {string} Het id van de survey waarvoor de vragen opgehaald moeten worden
- * @return {Promise<Array<{
- *      id: string,
- *      surveyId: string,
- *      title: string,
- *      type: 'single-line-answer' | 'multi-line-answer' | 'multiple-select',
- *      options: Array<{
- *          name: string,
- *          id: string,
- *      }> | null
- * }>>}
+ * @param surveyId Het id van de survey waarvoor de vragen opgehaald moeten worden
  */
-export const getAllQuestionsForSurvey = async ({ surveyId }: { surveyId: string}): Promise<Array<{
-    id: string;
-    surveyId: string;
-    title: string;
-    type: 'single-line-answer' | 'multi-line-answer' | 'multiple-select';
-    options: Array<{
-        name: string;
-        id: string;
-    }> | null;
-}>> => {
-    const allQuestions = await retrieveFromDatabase('_questions');
-    return allQuestions.filter(q => q.surveyId === surveyId);
-};
+export const getAllQuestionsForSurvey = async ({surveyId}: GetAllQuestionsForSurveyParams): Promise<IQuestion[]> => {
+    const allQuestions = await retrieveFromDatabase<IQuestion[]>('_questions', false)
+    return allQuestions.filter(q => q.surveyId === surveyId)
+}
+
+interface DeleteQuestionsParams {
+    questionId: string
+}
 
 /**
  * Verwijder de vraag met het opgegeven ID.
  *
- * @param questionId {string} Het id van de vraag die verwijderd moet worden.
- * @return {Promise<void>}
+ * @param questionId Het id van de vraag die verwijderd moet worden.
  */
-export const deleteQuestion = async ({ questionId }: { questionId: string }): Promise<void> => {
-    const allQuestions = await retrieveFromDatabase('_questions');
-    if (!allQuestions) return;
-    await persistToDatabase('_questions', allQuestions.filter(q => q.id !== questionId));
-};
-
-/**
- * Maak een nieuwe vraag aan.
- *
- * @param surveyId {string} Het id van de survey waarin de vraag gekoppeld is.
- * @param title {string} De title van de vraag.
- * @param type {'single-line-answer' | 'multi-line-answer' | 'multiple-select'} Het type van de vraag.
- * @param options {string[] | null} De opties voor een vraag van het type 'multiple-select'.
- * @return {Promise<{
- *      id: string,
- *      surveyId: string,
- *      title: string,
- *      type: 'single-line-answer' | 'multi-line-answer' | 'multiple-select',
- *      options: Array<{
- *          name: string,
- *          id: string,
- *      }> | null
- * }>}
- */
-export const createQuestion = async ({ surveyId, title, type, options }: {
-    surveyId: string;
-    title: string;
-    type: 'single-line-answer' | 'multi-line-answer' | 'multiple-select';
-    options: string[] | null;
-}): Promise<{
-    surveyId: string;
-    options: string[] | null;
-    id: string;
-    title: string;
-    type: "single-line-answer" | "multi-line-answer" | "multiple-select"
-}> => {
-    const allQuestions = await retrieveFromDatabase('_questions');
-    const question = {
-        id: faker.string.uuid(),
-        surveyId,
-        title,
-        type,
-        options
-    };
-    allQuestions.push(question);
-    await persistToDatabase('_questions', allQuestions);
-    return question
-};
+export const deleteQuestion = async ({questionId}: DeleteQuestionsParams): Promise<void> => {
+    const allQuestions = await retrieveFromDatabase<IQuestion[]>('_questions', false)
+    if (!allQuestions) return
+    await persistToDatabase('_questions', allQuestions.filter(q => q.id !== questionId), false)
+}
 
 //endregion
+
+
+
