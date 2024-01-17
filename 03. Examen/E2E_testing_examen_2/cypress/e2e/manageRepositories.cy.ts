@@ -1,6 +1,16 @@
 // Definieer een constante voor de naam van de test survey
 const testRepoName = 'Test Repository'
 const testRepoDescription = 'Cypress test repository'
+/* De properties zijn de volgende:
+
+    - project-btn: Verwijst naar de knoppen die projecten aanduiden.
+    - my-repositories-btn: Verwijst naar de knop waarmee de privé repositories getoond kunnen worden.
+    - public-repositories-btn: Verwijst naar de knop waarmee de publieke repositories getoond kunnen worden.
+    - name: Verwijst naar het input element voor de naam van een nieuw repository.
+    - description: Verwijst naar het input element voor de beschrijving van een nieuw repository.
+    - create-new-repo-btn: Verwijst naar de knop waarmee in het formulier een nieuw repository aangemaakt kan worden.
+    - repository: Verwijst naar een repository.
+    - new-repo-modal-btn: Verwijst naar de knop waarmee het modale venster, dat het formulier voor een nieuw repository aan te maken bevat, geopend kan worden.*/
 
 // Voer een end-to-end test uit voor het beheren van surveys
 Cypress._.times(1, () => {

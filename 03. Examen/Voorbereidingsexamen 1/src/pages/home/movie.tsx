@@ -4,6 +4,8 @@ import styled from  'styled-components'
 import viewModeContext from '../../context/viewModeContext.tsx'
 import {useNavigate} from 'react-router-dom'
 
+/*Gebruik de inhoud van het bestand cssForStyledComponents.txt om een nieuwe styled component te bouwen die je als container gebruikt voor de inhoud van de Movie component.*/
+
 const MovieContainer = styled.div`
     background: #2b2d30;
     color: #aabdc1;
@@ -64,6 +66,8 @@ const Movie: FunctionComponent<IMovie> = ({id, poster, title, plot, schedule, ac
                 <div className="schedule">
                     {schedule.map(s => <div key={s.time}>{s.time}</div>)}
                 </div>
+
+                {/*De 'Edit' knop moet nog verborgen worden in de user modus, daarnaast moet de knop verwijzen naar de detailpagina van de film.*/}
 
                 <div>
                     {viewMode === 'admin' && <button onClick={() => navigate(id)}>Edit</button>}

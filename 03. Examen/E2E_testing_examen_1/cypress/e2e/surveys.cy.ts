@@ -2,6 +2,14 @@
 // Deze wordt gebruikt in de laatste end-to-end test
 const testSurveyName = 'Test Survey'
 
+/*De properties zijn de volgende:
+    - survey: Verwijst naar een survey, gekoppeld aan elke individuele survey.
+    - edit-survey: Verwijst naar de knop waarmee de detailpagina van een survey geopend kan worden.
+    - english: Verwijst naar de knop waarmee de Engelstalige versie van de site geopend kan worden.
+    - dutch: Verwijst naar de knop waarmee de Nederlandstalige versie van de site geopend kan worden.
+    - survey-title: Verwijst naar de titel van de overzichtspagina voor surveys.
+    - new-survey-form: Verwijst naar het volledige formulier waarmee een nieuwe survey aangemaakt kan worden.*/
+
 // Voer een end-to-end test uit voor het beheren van surveys
 Cypress._.times(1, () => {
     describe('Surveys beheren', () => {

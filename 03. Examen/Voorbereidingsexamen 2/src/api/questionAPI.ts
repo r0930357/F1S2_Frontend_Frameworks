@@ -13,22 +13,39 @@ import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
  * ---------------------------------------------------------------------------------------------------------------------
  */
 
+// Deze hook wordt gebruikt om alle vragen op te halen voor een specifieke enquête.
 export const useGetAllQuestionsForSurvey = (surveyId: string) => {
+    // Gebruik van de useQuery hook voor het uitvoeren van een query
     return useQuery({
+        // Unieke query key op basis van het type gegevens ('surveys') en de specifieke enquête-ID
         queryKey: ['surveys', surveyId],
-        queryFn: () => getAllQuestionsForSurvey({surveyId}),
-    })
+
+        // Functie die daadwerkelijk de gegevens ophaalt voor de query
+        queryFn: () => getAllQuestionsForSurvey({ surveyId }),
+    });
 }
 
+
+// Deze hook wordt gebruikt om een vraag te verwijderen in het kader van een enquête, met een optimistische update.
 export const useDeleteQuestion = (surveyId: string) => {
+    // Initialiseren van de query client
     const queryClient = useQueryClient()
 
+    // Functie die de daadwerkelijke mutatie uitvoert
     return useMutation({
+        // Functie die de daadwerkelijke mutatie uitvoert
+
         mutationFn: deleteQuestion,
+        // Deze wordt uitgevoerd voordat de mutatie wordt gestart
+
         onMutate: ({questionId}) => {
+            // Ophalen van de enquêtegegevens uit de query cache
             queryClient.setQueryData(['survey', surveyId], o => o.filter(x => x.id !== questionId))
         },
+
+        // Deze wordt uitgevoerd bij een succesvolle mutatie
         onSuccess: async () => {
+            // Ongeldig maken van de cache voor de specifieke enquête om de meest recente gegevens op te halen
             await queryClient.invalidateQueries(['survey', surveyId])
         }
     })

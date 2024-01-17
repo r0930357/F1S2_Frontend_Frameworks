@@ -4,6 +4,7 @@
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/01. Lesvoorbeelden/Les 5 - Data Mutation" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/01. Lesvoorbeelden/Les 6 - Testing" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/03. Examen/frontend_exam_2023_11_deel_1_start" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/04. Project" vcs="Git" />
   </component>
 </project>
